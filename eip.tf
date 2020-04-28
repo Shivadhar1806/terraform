@@ -1,5 +1,5 @@
 resource "aws_eip" "eip" {
-  count = length(data.aws_availability_zones.available.names)
+  count = length(var.private_subnets)
 
   vpc      = true
 

@@ -5,7 +5,7 @@ resource "aws_route" "public" {
 }
 
 resource "aws_route" "private" {
-  count                  = length(data.aws_availability_zones.available.names)
+  count                  = length(var.private_subnets)
   route_table_id         = element(aws_route_table.private.*.id, count.index)
   destination_cidr_block = "0.0.0.0/0"
   nat_gateway_id         = element(aws_nat_gateway.nat.*.id, count.index)
