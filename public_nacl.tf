@@ -1,5 +1,4 @@
 resource "aws_network_acl" "networkaclpublic" {
-  count      = length(var.public_subnets)
   vpc_id     = aws_vpc.main.id
   subnet_ids = aws_subnet.public.*.id
 

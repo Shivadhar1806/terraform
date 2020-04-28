@@ -10,4 +10,15 @@ resource "aws_route_table" "public" {
   )
 }
 
+resource "aws_route" "public_internet_gateway" {
+  count = length(var.public_subnets)
+
+  route_table_id         = aws_route_table.public.id
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id             = aws_internet_gateway.igw.id
+
+  timeouts {
+    create = "5m"
+  }
+}
 
